@@ -1,0 +1,230 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 44 14% 95%;
+    --foreground: 0 0% 4%;
+    --border: 40 10% 86%;
+    --ring: 42 70% 30%;
+
+    --gold: #856717;
+    --gold-mid: #a9861d;
+    --gold-bright: #c9a227;
+    --ink: #0b0b0b;
+    --paper: #f4f3ef;
+
+    --header-h: 84px;
+    --ease-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  html {
+    -webkit-text-size-adjust: 100%;
+    scroll-behavior: auto;
+  }
+
+  body {
+    @apply bg-paper text-ink font-sans antialiased;
+    font-feature-settings: 'liga' 1, 'kern' 1, 'ss01' 1;
+    overflow-x: hidden;
+    text-rendering: optimizeLegibility;
+  }
+
+  ::selection {
+    background: var(--ink);
+    color: var(--paper);
+  }
+
+  /* Display type is set tight and heavy — the poster treatment the whole
+     identity hangs on. */
+  h1, h2, h3, h4 {
+    @apply font-display font-semibold tracking-tightest;
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  a, button {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--gold);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  /* Lenis */
+  html.lenis, html.lenis body { height: auto; }
+  .lenis.lenis-smooth { scroll-behavior: auto !important; }
+  .lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+  .lenis.lenis-stopped { overflow: hidden; }
+
+  ::-webkit-scrollbar { width: 10px; }
+  ::-webkit-scrollbar-track { background: #e9e7e0; }
+  ::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, #c9a227, #5c4710);
+    border: 3px solid #e9e7e0;
+    border-radius: 999px;
+  }
+}
+
+@layer components {
+  .container-luxe {
+    @apply mx-auto w-full max-w-[1700px] px-5 sm:px-8 lg:px-12 2xl:px-16;
+  }
+
+  /* Poster headline: edge-to-edge, near-zero leading, heavy negative tracking. */
+  .display-poster {
+    @apply font-display font-bold uppercase;
+    letter-spacing: -0.055em;
+    line-height: 0.82;
+  }
+
+  .eyebrow {
+    @apply font-sans text-[0.7rem] font-medium uppercase tracking-luxe text-gold-700;
+  }
+
+  .meta {
+    @apply font-sans text-[0.78rem] font-medium leading-snug text-ink/70;
+  }
+
+  .rule {
+    @apply h-px w-full bg-ink/10;
+  }
+
+  /* Light-theme glass: a frosted white pane rather than a dark one. */
+  .glass {
+    background: linear-gradient(150deg, rgba(255, 255, 255, 0.92), rgba(255, 255, 255, 0.62));
+    backdrop-filter: blur(16px) saturate(130%);
+    -webkit-backdrop-filter: blur(16px) saturate(130%);
+    border: 1px solid rgba(11, 11, 11, 0.07);
+  }
+
+  .gold-text {
+    background: linear-gradient(96deg, #5c4710 0%, #a9861d 30%, #d8bd63 48%, #a9861d 66%, #5c4710 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  /* Animated underline link */
+  .link-underline {
+    @apply relative inline-block;
+  }
+  .link-underline::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -2px;
+    height: 1px;
+    width: 100%;
+    background: currentColor;
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.65s var(--ease-expo);
+  }
+  .link-underline:hover::after,
+  .link-underline:focus-visible::after,
+  .link-underline[data-active='true']::after {
+    transform: scaleX(1);
+    transform-origin: left;
+  }
+
+  /*
+   * Hover wash — the signature interaction. A gold field wipes up from the
+   * baseline behind the content, so rows and cards "fill" rather than tint.
+   */
+  .hover-wash {
+    @apply relative isolate overflow-hidden;
+  }
+  .hover-wash::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: linear-gradient(180deg, #fbf7ea 0%, #f4ebce 55%, #e9d9a4 100%);
+    transform: scaleY(0);
+    transform-origin: bottom center;
+    transition: transform 0.8s var(--ease-expo);
+  }
+  .hover-wash:hover::before,
+  .hover-wash:focus-within::before {
+    transform: scaleY(1);
+  }
+
+  /* Inverted variant — fills to black instead of gold. */
+  .hover-wash-ink::before {
+    background: linear-gradient(180deg, #1a1a1a 0%, #0b0b0b 100%);
+  }
+
+  .noise-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 60;
+    pointer-events: none;
+    opacity: 0.035;
+    mix-blend-mode: multiply;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size: 180px 180px;
+  }
+
+  /* Thin crosshair rules, as in the reference grid. */
+  .crosshair::before,
+  .crosshair::after {
+    content: '';
+    position: absolute;
+    background: currentColor;
+    opacity: 0.18;
+  }
+  .crosshair::before {
+    left: 50%;
+    top: -5px;
+    height: 11px;
+    width: 1px;
+    transform: translateX(-50%);
+  }
+  .crosshair::after {
+    top: 50%;
+    left: -5px;
+    width: 11px;
+    height: 1px;
+    transform: translateY(-50%);
+  }
+}
+
+@layer utilities {
+  .text-balance { text-wrap: balance; }
+
+  .mask-fade-x {
+    -webkit-mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+    mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+  }
+
+  .will-transform { will-change: transform; }
+
+  .no-scrollbar::-webkit-scrollbar { display: none; }
+  .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+}
+
+.reveal-line { display: block; overflow: hidden; }
+.reveal-line > * { display: block; will-change: transform; }
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+  .hover-wash::before { transition: none; }
+}
