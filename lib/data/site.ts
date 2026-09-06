@@ -1,12 +1,48 @@
 import type { NavLink } from '@/types'
 
+const FALLBACK_URL = 'https://elitedecofe.com'
+
+/**
+ * Resolves the canonical origin for metadata, JSON-LD, sitemap and robots.
+ *
+ * `??` is not enough here: a platform env var that is *defined but empty*
+ * (Vercel does this for a variable added with no value) slips straight through
+ * nullish coalescing and blows up `new URL('')` during page-data collection,
+ * failing the build. So every candidate is trimmed, emptiness-checked and
+ * URL-parsed before it is trusted.
+ */
+function resolveSiteUrl(): string {
+  const candidates = [
+    process.env.NEXT_PUBLIC_SITE_URL,
+    // Set automatically on Vercel, so preview deploys get correct absolute URLs.
+    process.env.NEXT_PUBLIC_VERCEL_URL,
+    process.env.VERCEL_URL,
+  ]
+
+  for (const raw of candidates) {
+    const value = raw?.trim()
+    if (!value) continue
+
+    // VERCEL_URL arrives as a bare host with no protocol.
+    const withProtocol = /^https?:\/\//i.test(value) ? value : `https://${value}`
+
+    try {
+      return new URL(withProtocol).origin
+    } catch {
+      // Malformed value — fall through to the next candidate.
+    }
+  }
+
+  return FALLBACK_URL
+}
+
 export const SITE = {
   name: 'Elite Decofe',
   legalName: 'Elite Decofe Design Studio LLP',
   tagline: 'Designing Spaces That Define Luxury',
   description:
     'Elite Decofe is a luxury interior design and architecture studio crafting bespoke residences, villas, workspaces and hospitality spaces with timeless material honesty.',
-  url: process.env.NEXT_PUBLIC_SITE_URL ?? 'https://elitedecofe.com',
+  url: resolveSiteUrl(),
   locale: 'en_IN',
   email: 'studio@elitedecofe.com',
   phone: '+91 98200 41100',
