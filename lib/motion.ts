@@ -1,5 +1,5 @@
 /**
- * Elite Decofe motion language.
+ * Elite Decore motion language.
  * One easing family, one duration scale — every animation in the site pulls from here.
  */
 

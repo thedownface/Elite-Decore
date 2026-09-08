@@ -1,8 +1,8 @@
 {
-  "name": "elite-decofe",
+  "name": "elite-decore",
   "version": "1.0.0",
   "private": true,
-  "description": "Elite Decofe — Luxury Interior Design & Architecture Studio",
+  "description": "Elite Decore — Luxury Interior Design & Architecture Studio",
   "scripts": {
     "dev": "next dev",
     "build": "next build",

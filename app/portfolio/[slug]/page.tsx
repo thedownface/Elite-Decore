@@ -71,7 +71,7 @@ export default async function ProjectPage({ params }: Params) {
         ]}
         meta={[
           { label: 'Location', value: project.location },
-          { label: 'Area', value: project.area },
+          { label: 'Scope', value: project.area },
           { label: 'Style', value: project.style },
           { label: 'Year', value: project.year },
         ]}

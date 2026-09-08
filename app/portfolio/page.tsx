@@ -10,15 +10,15 @@ import { SITE } from '@/lib/data/site'
 export const metadata: Metadata = createMetadata({
   title: 'Portfolio',
   description:
-    'Selected interior architecture by Elite Decofe — residences, villas, kitchens, workspaces and hospitality across Mumbai, Pune, Bengaluru, Hyderabad and Goa.',
+    'Selected interior work by Elite Decore — modular kitchens, bedroom wardrobes and full-home interiors across Bengaluru.',
   path: '/portfolio',
-  keywords: ['interior design portfolio', 'luxury interiors India', 'villa interior projects'],
+  keywords: ['interior design portfolio Bangalore', 'modular kitchen projects', 'wardrobe design Bengaluru'],
 })
 
 const collectionJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'CollectionPage',
-  name: 'Elite Decofe Portfolio',
+  name: 'Elite Decore Portfolio',
   url: `${SITE.url}/portfolio`,
   hasPart: PROJECTS.map((p) => ({
     '@type': 'CreativeWork',
@@ -41,8 +41,8 @@ export default function PortfolioPage() {
 
       <PageHero
         eyebrow="Selected Work"
-        title="Two hundred and fifty projects. Eight worth showing you first."
-        description="Every project below was designed, detailed and supervised entirely in-house. Photography is un-styled beyond our own handover styling — these are the rooms as they were delivered."
+        title="Every project we've shipped, not a curated slice."
+        description="Kitchens, wardrobes and full-home interiors from Bengaluru apartments — designed, detailed and supervised in-house. These are the rooms as they were handed over, photographed on site."
         breadcrumb={[
           { label: 'Home', href: '/' },
           { label: 'Portfolio', href: '/portfolio' },

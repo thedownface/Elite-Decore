@@ -12,6 +12,7 @@ import { Preloader } from '@/components/layout/Preloader'
 import { Cursor } from '@/components/ui/Cursor'
 import { Grain } from '@/components/ui/Grain'
 import { ScrollProgress } from '@/components/ui/ScrollProgress'
+import { WhatsAppButton } from '@/components/ui/WhatsAppButton'
 
 // Heavy neo-grotesque for the poster headlines.
 const display = Archivo({
@@ -54,13 +55,13 @@ export const metadata: Metadata = {
   category: 'Interior Design',
   keywords: [
     'luxury interior design',
-    'interior designers in Mumbai',
+    'interior designers in Bangalore',
     'bespoke interior architecture',
     'villa interior designers',
     'turnkey interior projects',
     'modular kitchen design',
     'hospitality interior design',
-    'Elite Decofe',
+    'Elite Decore',
   ],
   alternates: { canonical: '/' },
   openGraph: {
@@ -75,7 +76,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: `${SITE.name} — ${SITE.tagline}`,
     description: SITE.description,
-    creator: '@elitedecofe',
+    creator: '@elitedecore',
   },
   robots: {
     index: true,
@@ -107,8 +108,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en-IN" className={`${display.variable} ${sans.variable} ${serif.variable}`} suppressHydrationWarning>
       <head>
-        <link rel="preconnect" href="https://images.unsplash.com" />
-        <link rel="dns-prefetch" href="https://images.unsplash.com" />
         {/*
           Entrance animations start from opacity:0 — without JS they must not stay
           there. The markup has to be injected rather than passed as a child, or
@@ -146,6 +145,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
           <Footer />
         </SmoothScrollProvider>
+
+        <WhatsAppButton />
       </body>
     </html>
   )

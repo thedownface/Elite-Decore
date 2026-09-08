@@ -1,6 +1,6 @@
 import type { NavLink } from '@/types'
 
-const FALLBACK_URL = 'https://elitedecofe.com'
+const FALLBACK_URL = 'https://elitedecore.in'
 
 /**
  * Resolves the canonical origin for metadata, JSON-LD, sitemap and robots.
@@ -37,32 +37,33 @@ function resolveSiteUrl(): string {
 }
 
 export const SITE = {
-  name: 'Elite Decofe',
-  legalName: 'Elite Decofe Design Studio LLP',
-  tagline: 'Designing Spaces That Define Luxury',
+  name: 'Elite Decore',
+  legalName: 'Elite Decore',
+  tagline: 'Creative Meets Living',
   description:
-    'Elite Decofe is a luxury interior design and architecture studio crafting bespoke residences, villas, workspaces and hospitality spaces with timeless material honesty.',
+    'Elite Decore is an interior design studio in Bangalore crafting bespoke residences, villas, workspaces and hospitality spaces with timeless material honesty.',
   url: resolveSiteUrl(),
   locale: 'en_IN',
-  email: 'studio@elitedecofe.com',
-  phone: '+91 98200 41100',
-  phoneHref: '+919820041100',
-  founded: '2013',
+  email: 'info@elitedecore.in',
+  phone: '+91 97381 25710',
+  phoneHref: '+919738125710',
+  whatsappHref: '919738125710',
+  founded: '2020',
   address: {
-    street: '14 Athena House, Linking Road',
-    district: 'Bandra West',
-    city: 'Mumbai',
-    region: 'Maharashtra',
-    postalCode: '400050',
+    street: '#95, Muninanjappa Layout',
+    district: 'Near Alpha Garden, Kodigehalli Road',
+    city: 'Bangalore',
+    region: 'Karnataka',
+    postalCode: '560048',
     country: 'IN',
     countryName: 'India',
   },
   hours: 'Mon – Sat · 10:00 – 19:00 IST',
   socials: [
-    { label: 'Instagram', href: 'https://instagram.com/elitedecofe' },
-    { label: 'Pinterest', href: 'https://pinterest.com/elitedecofe' },
-    { label: 'Behance', href: 'https://behance.net/elitedecofe' },
-    { label: 'LinkedIn', href: 'https://linkedin.com/company/elitedecofe' },
+    { label: 'Instagram', href: 'https://instagram.com/elitedecore' },
+    { label: 'Pinterest', href: 'https://pinterest.com/elitedecore' },
+    { label: 'Behance', href: 'https://behance.net/elitedecore' },
+    { label: 'LinkedIn', href: 'https://linkedin.com/company/elitedecore' },
   ],
 } as const
 
@@ -76,8 +77,8 @@ export const NAV_LINKS: NavLink[] = [
 ]
 
 export const STATS = [
-  { value: 250, suffix: '+', label: 'Projects Delivered' },
-  { value: 12, suffix: '', label: 'Years of Practice' },
-  { value: 40, suffix: '+', label: 'In-House Designers' },
-  { value: 98, suffix: '%', label: 'Client Satisfaction' },
+  { value: 20, suffix: '+', label: 'Projects Delivered' },
+  { value: 6, suffix: '', label: 'Years of Practice' },
+  { value: 8, suffix: '+', label: 'In-House Team' },
+  { value: 100, suffix: '%', label: 'In-House Execution' },
 ] as const

@@ -112,7 +112,7 @@ export function Process() {
         <SectionHeading
           eyebrow="How We Work"
           title="Six stages. No surprises."
-          description="Every project runs on the same spine, from a 1,200 square foot apartment to a forty-two key hotel. You always know which stage you are in, and what comes next."
+          description="Every project runs on the same spine, from a single modular kitchen to a full home turnkey. You always know which stage you are in, and what comes next."
           as="h2"
           className="max-w-4xl"
         />

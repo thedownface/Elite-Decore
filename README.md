@@ -1,4 +1,4 @@
-# Elite Decofe
+# Elite Decore
 
 An immersive marketing site for a luxury interior design & architecture studio.
 Built as an editorial, motion-led experience — a poster-type hero, pinned
@@ -36,7 +36,7 @@ Set the canonical origin before deploying — it drives metadata, JSON-LD,
 
 ```bash
 # .env.local
-NEXT_PUBLIC_SITE_URL=https://elitedecofe.com
+NEXT_PUBLIC_SITE_URL=https://elitedecore.in
 ```
 
 ---
@@ -57,7 +57,7 @@ app/                        App Router — every route prerenders to static HTML
 components/
   layout/                   Header, MenuOverlay, Footer, Preloader, PageHero
   sections/                 Hero, About, Services, PortfolioScroll, MaterialLab,
-                            Process, Testimonials, BeforeAfter, CallToAction,
+                            Process, Testimonials, CallToAction,
                             PortfolioGrid, ContactForm
   three/                    HeroScene, ParticleField, MaterialScene
   ui/                       Button, MagneticButton, AnimatedLink, RevealText,
@@ -159,8 +159,7 @@ simply does not render.
 ## Accessibility
 
 Skip link · semantic landmarks and heading order · visible gold focus rings ·
-`aria-current` on active nav · the comparison slider is a real `role="slider"`
-with arrow/Home/End keys · form fields carry labels, `aria-invalid` and
+`aria-current` on active nav · form fields carry labels, `aria-invalid` and
 `role="alert"` errors · all decorative art is `aria-hidden` · text colours were
 tuned to clear 4.5:1 (ink at 60% opacity and gold-700 are the floors on paper;
 copy set over a dark image scrim is paper-toned instead) · full
@@ -203,7 +202,40 @@ Set `NEXT_PUBLIC_SITE_URL` in the project's environment variables.
 
 ## Before going live
 
-- Replace Unsplash imagery with licensed studio photography.
+`lib/data/site.ts` carries the studio's real name, tagline, phone, email and
+Bangalore address, taken from the business card. All photography is the
+studio's own — see `public/images/`, sourced from `assets/` (WhatsApp site
+photos) — and there is no Unsplash or other stock imagery left in the codebase.
+What is still placeholder or needs a final check:
+
+- **Studio numbers.** `founded`, the `STATS` block and the team breakdown in
+  `app/about/page.tsx` reflect the founding year, team size and project count
+  given during setup (2020 · a small in-house team · 20+ projects). Update
+  them the moment any of those change.
+- **Testimonials.** The quotes in `lib/data/testimonials.ts` are written for
+  this launch, tied to the real projects but not sourced from actual clients.
+  Swap in real, permissioned client quotes as they come in.
+- **Portfolio years.** Each project in `lib/data/projects.ts` has a plausible
+  but unconfirmed `year` and no named client (`client: 'Private Residence'`
+  throughout, deliberately — verify actual completion dates and client
+  attribution before publishing anything more specific).
+- **Excluded photo.** One photo in `assets/portfolio/Jai fortune apartments/`
+  (`...2.34.18 PM.jpeg`) carries a third-party studio's watermark and
+  copyright notice ("ATTICARCH") and was deliberately left out of
+  `public/images/` — do not publish it as Elite Decore's own work. If that
+  room should be in the portfolio, re-shoot or re-source it without the
+  watermark.
+- **Journal cover reuse.** Blog post covers in `lib/data/posts.ts` reuse real
+  project photos thematically (there's no dedicated editorial photography) —
+  swap in dedicated shots if you want the Journal to feel distinct from the
+  Portfolio.
+- **Social handles.** The four URLs in `SITE.socials` were guessed from the
+  brand name. Verify each or remove it — they feed `sameAs` in the JSON-LD.
+- **Map pin.** `localBusinessJsonLd` publishes no `geo` coordinates. Add the
+  real latitude/longitude for the Kodigehalli Road address when convenient.
 - Point `ContactForm.onSubmit` and the footer newsletter at a real endpoint
   (server action, CRM or ESP) — both are currently client-validated stubs.
-- Update `lib/data/site.ts` with real address, phone, email and social handles.
+- WhatsApp click-to-chat is wired to `SITE.whatsappHref` (currently
+  `919738125710`) in three places: the floating button on every page
+  (`components/ui/WhatsAppButton.tsx`), the Contact page, and the footer.
+  Update that one field if the number ever changes.

@@ -120,7 +120,7 @@ export function Preloader() {
             data-intro-word
             className="block font-display text-2xl font-bold uppercase tracking-[0.02em] text-ink md:text-4xl"
           >
-            ELITE DECOFE
+            ELITE DECORE
           </span>
         </div>
 

@@ -29,7 +29,7 @@ export default function AppleIcon() {
             opacity: 0.6,
           }}
         >
-          DECOFE
+          DECORE
         </div>
       </div>
     ),

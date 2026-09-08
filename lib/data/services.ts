@@ -38,7 +38,7 @@ export const SERVICES: Service[] = [
     title: 'Office & Workspace',
     tagline: 'Environments that hold attention',
     description:
-      'Workplaces designed around acoustics, daylight and quiet status — from boutique studios to headquarters floors for two hundred people.',
+      'Workplaces designed around acoustics, daylight and quiet status — from boutique studios to full office floors.',
     deliverables: ['Workplace strategy', 'Acoustic design', 'Wayfinding & branding', 'Phased fit-out'],
     image: IMG.serviceOffice,
   },

@@ -52,8 +52,8 @@ const ENGAGEMENTS = [
 
 const FAQS = [
   {
-    q: 'Do you work outside Mumbai?',
-    a: 'Yes. We deliver projects across Pune, Bengaluru, Hyderabad, Goa and New Delhi, supervised by our own project managers who travel to site rather than by local subcontractors.',
+    q: 'Do you work outside Bangalore?',
+    a: 'Yes. We deliver projects beyond Bangalore across Karnataka and neighbouring states, supervised by our own project managers who travel to site rather than by local subcontractors.',
   },
   {
     q: 'Can you work with our existing architect?',

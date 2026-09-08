@@ -156,6 +156,17 @@ export function Footer() {
               >
                 {SITE.phone}
               </a>
+              <a
+                href={`https://wa.me/${SITE.whatsappHref}?text=${encodeURIComponent(
+                  "Hi Elite Decore, I'd like to talk about an interior project.",
+                )}`}
+                target="_blank"
+                rel="noreferrer noopener"
+                className="link-underline w-fit text-sm text-ink/85"
+                data-cursor="link"
+              >
+                WhatsApp us
+              </a>
               <span className="text-xs text-ink/65">{SITE.hours}</span>
             </div>
 
@@ -187,7 +198,7 @@ export function Footer() {
 
       <div aria-hidden className="pointer-events-none select-none overflow-hidden">
         <p className="-mb-[0.22em] whitespace-nowrap text-center font-display text-[19vw] font-semibold leading-none tracking-tightest text-white/[0.035]">
-          ELITE DECOFE
+          ELITE DECORE
         </p>
       </div>
     </footer>

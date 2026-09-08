@@ -51,7 +51,7 @@ export default function OpengraphImage() {
                 fontFamily: 'Helvetica, sans-serif',
               }}
             >
-              DECOFE
+              DECORE
             </span>
           </div>
         </div>
@@ -67,9 +67,9 @@ export default function OpengraphImage() {
               maxWidth: 900,
             }}
           >
-            <span>Designing Spaces That</span>
+            <span>Creative Meets</span>
             <span style={{ color: '#DCC377', fontStyle: 'italic', marginLeft: 20 }}>
-              Define Luxury
+              Living
             </span>
           </div>
           <div style={{ width: 220, height: 2, background: '#C9A227' }} />
@@ -85,8 +85,8 @@ export default function OpengraphImage() {
             fontFamily: 'Helvetica, sans-serif',
           }}
         >
-          <span>INTERIOR ARCHITECTURE</span>
-          <span>MUMBAI · EST. {SITE.founded}</span>
+          <span>INTERIOR DESIGN</span>
+          <span>BENGALURU · EST. {SITE.founded}</span>
         </div>
       </div>
     ),

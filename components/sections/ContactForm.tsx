@@ -188,7 +188,7 @@ export function ContactForm() {
               id="location"
               name="location"
               type="text"
-              placeholder="Worli, Mumbai"
+              placeholder="Whitefield, Bangalore"
               className={inputClass}
             />
           </Field>
