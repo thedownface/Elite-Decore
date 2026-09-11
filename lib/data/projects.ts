@@ -26,7 +26,6 @@ export const PROJECTS: Project[] = [
     ],
     cover: GALLERY.prestige1,
     gallery: [
-      { src: GALLERY.prestige1, alt: 'Primary bedroom with mustard leather bed and backlit fabric feature wall', caption: 'Primary bedroom' },
       { src: GALLERY.prestige2, alt: 'Bedroom with book-matched marble platform bed and crystal chandelier', caption: 'Guest bedroom' },
       { src: GALLERY.prestige3, alt: 'Bedroom with colourful gallery wall and diagonal wood-panelled headboard', caption: "Children's bedroom" },
       { src: GALLERY.prestigeKitchen, alt: 'Graphite-grey modular kitchen with brass trim and built-in oven', caption: 'Modular kitchen' },
@@ -52,7 +51,6 @@ export const PROJECTS: Project[] = [
     ],
     cover: GALLERY.jaiFortuneKitchen,
     gallery: [
-      { src: GALLERY.jaiFortuneKitchen, alt: 'White gloss modular kitchen with rose-gold trim and marble backsplash', caption: 'Modular kitchen' },
       { src: GALLERY.jaiFortuneKitchenDetail, alt: 'Charcoal marble kitchen counter with rose-gold cabinet edging', caption: 'Kitchen detail' },
       { src: GALLERY.jaiFortuneTvUnit, alt: 'Diagonal fluted-wood television feature wall with backlit marble panel', caption: 'Living room media wall' },
     ],
@@ -78,7 +76,6 @@ export const PROJECTS: Project[] = [
     cover: GALLERY.alpineFiesta2,
     gallery: [
       { src: GALLERY.alpineFiesta1, alt: 'Two-tone walnut and oak hinged wardrobe with brushed handles' },
-      { src: GALLERY.alpineFiesta2, alt: 'Fluted teak sliding wardrobe wall with diamond inlay handles', caption: 'Sliding wardrobe wall' },
       { src: GALLERY.alpineFiesta3, alt: 'Sage and white glass-shutter wardrobe with open shelving' },
       { src: GALLERY.alpineFiesta4, alt: 'Honey-oak hinged wardrobe with central mirror panel' },
       { src: GALLERY.alpineFiesta5, alt: 'Mirrored wardrobe with floral-etched glass accent panel' },
@@ -105,7 +102,6 @@ export const PROJECTS: Project[] = [
     gallery: [
       { src: GALLERY.balajiRosewoods1, alt: 'Graphite and white sliding wardrobe with corner shelving and mirror' },
       { src: GALLERY.balajiRosewoods2, alt: 'Dark walnut sliding wardrobe with geometric hexagon inlay band' },
-      { src: GALLERY.balajiRosewoods3, alt: 'Bedroom with cherry-blossom mural feature wall and ring pendant lighting', caption: 'Primary bedroom' },
     ],
     featured: true,
   },
@@ -129,7 +125,6 @@ export const PROJECTS: Project[] = [
     gallery: [
       { src: GALLERY.karle1, alt: 'Wood-tone sliding wardrobe with white laminate band' },
       { src: GALLERY.karle2, alt: 'Honey-oak hinged wardrobe with floral-etched glass door' },
-      { src: GALLERY.karle3, alt: 'Angular marble and wood-slat headboard feature wall', caption: 'Primary bedroom' },
     ],
     featured: false,
   },

@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useRef, useState } from 'react'
+import Image from 'next/image'
 import { gsap, useGSAP } from '@/lib/gsap'
 import { Monogram } from '@/components/ui/Logo'
 import { useReducedMotion } from '@/hooks/useReducedMotion'
@@ -10,9 +11,11 @@ import { pad } from '@/lib/utils'
 const SESSION_KEY = 'ed:intro-played'
 
 /**
- * First-visit intro: the monogram draws itself while a counter climbs to 100,
- * then two panels split apart to hand over to the hero. Plays once per session,
- * and is skipped entirely under reduced-motion.
+ * First-visit intro: a dark stage matching the studio's own logo art — the
+ * monogram's ambient glow blooms in behind it, its strokes draw themselves,
+ * and the window lights up, while a counter climbs to 100. Two dark panels
+ * then split apart to hand over to the paper-light hero underneath. Plays
+ * once per session, and is skipped entirely under reduced-motion.
  */
 export function Preloader() {
   const rootRef = useRef<HTMLDivElement>(null)
@@ -56,14 +59,20 @@ export function Preloader() {
         },
       })
 
-      tl.to('[data-intro-mark] path', {
-        strokeDashoffset: 0,
-        duration: 1.5,
-        stagger: 0.12,
-        ease: 'expo.out',
-      })
-        .to('[data-intro-mark] rect', { opacity: 0.4, duration: 0.8 }, 0.3)
-        .from('[data-intro-word]', { yPercent: 120, duration: 1.1, ease: 'expo.out' }, 0.35)
+      tl.to('[data-intro-glow]', { opacity: 1, scale: 1, duration: 2.2, ease: 'expo.out' }, 0)
+        .to('[data-intro-mark] path', {
+          strokeDashoffset: 0,
+          duration: 1.5,
+          stagger: 0.12,
+          ease: 'expo.out',
+        }, 0.1)
+        .to(
+          '[data-intro-mark] rect',
+          { opacity: 1, duration: 0.7, stagger: 0.09, ease: 'power2.out' },
+          0.55,
+        )
+        .from('[data-intro-word]', { yPercent: 120, duration: 1.1, ease: 'expo.out' }, 0.5)
+        .from('[data-intro-tagline]', { autoAlpha: 0, y: 10, duration: 0.9, ease: 'expo.out' }, 0.75)
         .to(
           count,
           {
@@ -103,37 +112,63 @@ export function Preloader() {
     >
       <div className="absolute inset-0 flex">
         {Array.from({ length: 5 }).map((_, i) => (
-          <div key={i} data-intro-panel className="h-full flex-1 origin-top bg-paper" />
+          <div key={i} data-intro-panel className="h-full flex-1 origin-top bg-ink" />
         ))}
+      </div>
+
+      {/* Ambient bloom, lifted from the studio's own logo art. */}
+      <div
+        data-intro-glow
+        className="pointer-events-none absolute h-[70vh] w-[70vh] max-w-[640px] scale-90 opacity-0 mix-blend-screen"
+      >
+        <Image
+          src="/images/logo/monogram-glow.png"
+          alt=""
+          fill
+          priority
+          quality={80}
+          sizes="640px"
+          className="object-contain blur-2xl"
+        />
       </div>
 
       <div
         data-intro-content
         className="relative flex flex-col items-center gap-8 px-6 text-center"
       >
-        <div data-intro-mark className="text-gold-700 [&_path]:[stroke-dasharray:60] [&_path]:[stroke-dashoffset:60] [&_rect]:opacity-0">
+        <div
+          data-intro-mark
+          className="text-paper [&_path]:[stroke-dasharray:90] [&_path]:[stroke-dashoffset:90] [&_rect]:opacity-0"
+        >
           <Monogram className="h-16 w-16" />
         </div>
 
         <div className="overflow-hidden">
           <span
             data-intro-word
-            className="block font-display text-2xl font-bold uppercase tracking-[0.02em] text-ink md:text-4xl"
+            className="block font-display text-2xl font-bold uppercase tracking-[0.02em] text-paper md:text-4xl"
           >
             ELITE DECORE
           </span>
         </div>
 
-        <div className="relative h-px w-56 overflow-hidden bg-ink/12 md:w-72">
+        <span
+          data-intro-tagline
+          className="-mt-4 text-[0.62rem] uppercase tracking-luxe text-gold-400"
+        >
+          Creative Meets Living
+        </span>
+
+        <div className="relative h-px w-56 overflow-hidden bg-paper/15 md:w-72">
           <div
             data-intro-line
-            className="h-full w-full origin-left scale-x-0 bg-gradient-to-r from-gold-800 via-gold-600 to-gold-400"
+            className="h-full w-full origin-left scale-x-0 bg-gradient-to-r from-gold-800 via-gold-500 to-gold-300"
           />
         </div>
 
         <span
           ref={counterRef}
-          className="font-sans text-[0.65rem] tracking-luxe text-ink/70 tabular-nums"
+          className="font-sans text-[0.65rem] tracking-luxe text-paper/70 tabular-nums"
         >
           000
         </span>

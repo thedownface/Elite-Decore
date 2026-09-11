@@ -46,7 +46,7 @@ export function About() {
       aria-label="About Elite Decore"
     >
       <div className="container-luxe">
-        <div className="grid gap-16 lg:grid-cols-12 lg:gap-14">
+        <div className="grid gap-16 lg:grid-cols-12 lg:items-start lg:gap-14">
           {/* Editorial column */}
           <div className="flex flex-col gap-10 lg:col-span-6 lg:pr-10">
             <FadeIn y={14}>

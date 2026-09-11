@@ -127,6 +127,28 @@ and every reveal renders in its final state.
 
 ---
 
+## Brand mark
+
+The monogram (`components/ui/Logo.tsx` → `Monogram`) — an E interlocked with
+a gable-roofed D, its window lit gold — is drawn as flat, `currentColor` SVG
+so it reads crisply on both the paper-light header/footer and the dark
+preloader/favicons, at any size. It's a hand-vectorized redraw of the
+studio's own logo art (`assets/logo/`, kept out of git — see `.gitignore`),
+not that file used directly: the source is a moody glow-on-black concept
+image, great for a loading-screen bloom but too soft to read as a small nav
+icon or favicon. That said, `public/images/logo/monogram-glow.png` —
+a crop of the source with black keyed to transparent (its brightness *is*
+its alpha, since it's genuine additive glow-on-black art) — is used directly
+as the ambient bloom behind the vector mark in the preloader
+(`components/layout/Preloader.tsx`), so the two are still the same drawing.
+
+The source file's baked-in wordmark reads "ELITE DECOFE" (a typo, or a
+leftover from the old placeholder brand name) — every place that needs
+the name as text uses real, correctly-spelled `SITE.name` / literal
+"ELITE DECORE" instead of that raster text.
+
+---
+
 ## 3D
 
 Both scenes are `next/dynamic` with `ssr: false`, so `three` stays out of the
@@ -233,8 +255,13 @@ What is still placeholder or needs a final check:
   brand name. Verify each or remove it — they feed `sameAs` in the JSON-LD.
 - **Map pin.** `localBusinessJsonLd` publishes no `geo` coordinates. Add the
   real latitude/longitude for the Kodigehalli Road address when convenient.
-- Point `ContactForm.onSubmit` and the footer newsletter at a real endpoint
-  (server action, CRM or ESP) — both are currently client-validated stubs.
+- The enquiry form and the footer newsletter both submit to Web3Forms
+  (`lib/forms.ts`) — client-validated, then posted as JSON, with a honeypot
+  field against spam. No backend of our own, so submissions land as email
+  notifications to whatever inbox the Web3Forms access key is registered to;
+  there's no CRM/ESP behind it. Swap `NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY` (see
+  `.env.example`) if that key is ever rotated or you move to a different
+  provider — everything else in `lib/forms.ts` stays the same shape.
 - WhatsApp click-to-chat is wired to `SITE.whatsappHref` (currently
   `919738125710`) in three places: the floating button on every page
   (`components/ui/WhatsAppButton.tsx`), the Contact page, and the footer.

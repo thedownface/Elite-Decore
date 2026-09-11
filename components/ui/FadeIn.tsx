@@ -47,8 +47,12 @@ export function FadeIn({ children, className, delay = 0, y = 32, stagger }: Prop
     { scope: ref, dependencies: [reduced] },
   )
 
+  // In stagger mode, GSAP animates each child's own opacity (set immediately
+  // via fromTo, before the trigger fires) — the wrapper itself is never
+  // animated, so it must not carry a static opacity-0 class or its children
+  // stay invisible forever, regardless of their own opacity.
   return (
-    <div ref={ref} className={cn(!reduced && 'opacity-0', className)}>
+    <div ref={ref} className={cn(!reduced && !stagger && 'opacity-0', className)}>
       {children}
     </div>
   )

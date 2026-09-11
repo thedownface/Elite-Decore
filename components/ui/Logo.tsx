@@ -1,28 +1,45 @@
 import { cn } from '@/lib/utils'
 
 /**
- * Wordmark + monogram, drawn from the studio's business card:
- * a serif "Elite" over a gold script "Decore", and an E set inside a
- * double gold ring. The monogram doubles as the favicon and preloader mark.
+ * Wordmark + monogram. The monogram is drawn from the studio's own logo
+ * mark (assets/logo) — an E interlocked with a D shaped as a gabled roof,
+ * its window lit in gold. Strokes use `currentColor` so the mark reads on
+ * both the paper-light header and the ink-dark footer/preloader; the window
+ * stays a fixed gold-500, the one warm light in the mark either way. Doubles
+ * as the favicon and preloader mark.
  */
 export function Monogram({ className }: { className?: string }) {
   return (
     <svg
-      viewBox="0 0 48 48"
+      viewBox="0 0 64 64"
       fill="none"
       aria-hidden
       className={cn('h-9 w-9', className)}
       xmlns="http://www.w3.org/2000/svg"
     >
-      {/* Outer gold ring, then the inner hairline — as on the card. */}
-      <circle cx="24" cy="24" r="22" stroke="currentColor" strokeWidth="2.4" />
-      <circle cx="24" cy="24" r="17.5" stroke="currentColor" strokeOpacity="0.45" strokeWidth="1" />
-      {/* The E. */}
-      <path d="M18 33V15h11" stroke="currentColor" strokeWidth="2.2" strokeLinecap="square" />
-      <path d="M18 24h8" stroke="currentColor" strokeWidth="2.2" strokeLinecap="square" />
-      <path d="M18 33h11" stroke="currentColor" strokeWidth="2.2" strokeLinecap="square" />
-      {/* The clipped bar that closes the counter on the card's mark. */}
-      <path d="M31.5 21.5v5" stroke="currentColor" strokeOpacity="0.7" strokeWidth="2.2" />
+      {/* E interlocked with D. */}
+      <g stroke="currentColor" strokeWidth="4" strokeLinecap="square" strokeLinejoin="miter">
+        <path d="M10 8v50" />
+        <path d="M10 8h20" />
+        <path d="M10 33h8" />
+        <path d="M10 58h20" />
+        <path d="M30 8c18 0 27 11 27 25s-9 25-27 25" />
+      </g>
+      {/* The roofline the D's bowl is built around. */}
+      <path
+        d="M26 46l10-12 10 12"
+        stroke="currentColor"
+        strokeWidth="3.6"
+        strokeLinecap="square"
+        strokeLinejoin="miter"
+      />
+      {/* The lit window. */}
+      <g fill="#C9A227">
+        <rect x="31.4" y="47.5" width="4" height="4" />
+        <rect x="36.6" y="47.5" width="4" height="4" />
+        <rect x="31.4" y="52.7" width="4" height="4" />
+        <rect x="36.6" y="52.7" width="4" height="4" />
+      </g>
     </svg>
   )
 }
