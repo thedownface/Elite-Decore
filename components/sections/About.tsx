@@ -43,10 +43,10 @@ export function About() {
       ref={ref}
       id="about"
       className="relative overflow-hidden bg-paper py-24 md:py-36 lg:py-44"
-      aria-label="About Elite Decofe"
+      aria-label="About Elite Decore"
     >
       <div className="container-luxe">
-        <div className="grid gap-16 lg:grid-cols-12 lg:gap-14">
+        <div className="grid gap-16 lg:grid-cols-12 lg:items-start lg:gap-14">
           {/* Editorial column */}
           <div className="flex flex-col gap-10 lg:col-span-6 lg:pr-10">
             <FadeIn y={14}>
@@ -67,19 +67,19 @@ export function About() {
               <p className="max-w-xl text-fluid-base font-normal leading-relaxed text-ink/65">
                 {SITE.name} began in {SITE.founded} with a single conviction: that luxury
                 is not an accumulation of expensive objects, but the absence of anything
-                unconsidered. Twelve years and two hundred and fifty projects later, that
-                conviction has only sharpened.
+                unconsidered. Six years and twenty homes later, that conviction has only
+                sharpened.
               </p>
               <p className="max-w-xl text-fluid-base font-normal leading-relaxed text-ink/65">
-                Our forty designers, drafters and project managers work from one studio in
-                Bandra. We keep detailing, procurement and site supervision in-house
+                Our small in-house team of designers and site engineers works out of
+                Bangalore. We keep detailing, procurement and site supervision in-house
                 because the gap between a drawing and a built room is where most interiors
                 quietly fail.
               </p>
               <p className="max-w-xl text-fluid-base font-normal leading-relaxed text-ink/65">
-                We take on roughly twenty projects a year. Not because we cannot take more,
-                but because the principal visits every site, every week, and there are only
-                so many weeks.
+                We take on a limited number of projects at a time, not because we cannot
+                take more, but because the principal visits every site personally, and
+                there are only so many hours in a week.
               </p>
             </FadeIn>
 
@@ -103,7 +103,7 @@ export function About() {
           <div className="relative lg:col-span-6">
             <RevealImage
               src={IMG.aboutPortrait}
-              alt="A calm interior with plaster walls, oak joinery and a single sculptural chair"
+              alt="A bedroom suite finished in book-matched marble and warm wood panelling"
               className="aspect-[4/5] w-full rounded-arch"
               parallax={9}
               sizes="(max-width: 1024px) 100vw, 45vw"
@@ -115,7 +115,7 @@ export function About() {
             >
               <RevealImage
                 src={IMG.aboutDetail}
-                alt="Close detail of hand-rubbed walnut joinery meeting honed stone"
+                alt="Close detail of a charcoal-marble kitchen counter with rose-gold trim"
                 className="aspect-[3/4] w-full rounded-arch shadow-lift ring-1 ring-ink/10"
                 from="left"
                 sizes="(max-width: 1024px) 45vw, 22vw"

@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/Button'
 import { MagneticButton } from '@/components/ui/MagneticButton'
 import { cn } from '@/lib/utils'
 import { useReducedMotion } from '@/hooks/useReducedMotion'
+import { submitToWeb3Forms, Web3FormsError } from '@/lib/forms'
 
 const PROJECT_TYPES = [
   'Residential Interiors',
@@ -60,7 +61,7 @@ const inputClass =
 export function ContactForm() {
   const ref = useRef<HTMLFormElement>(null)
   const [errors, setErrors] = useState<Errors>({})
-  const [status, setStatus] = useState<'idle' | 'sending' | 'sent'>('idle')
+  const [status, setStatus] = useState<'idle' | 'sending' | 'sent' | 'error'>('idle')
   const [type, setType] = useState(PROJECT_TYPES[0])
   const [budget, setBudget] = useState(BUDGETS[1])
   const reduced = useReducedMotion()
@@ -92,6 +93,7 @@ export function ContactForm() {
     const name = String(data.get('name') ?? '').trim()
     const email = String(data.get('email') ?? '').trim()
     const phone = String(data.get('phone') ?? '').trim()
+    const location = String(data.get('location') ?? '').trim()
     const message = String(data.get('message') ?? '').trim()
 
     if (name.length < 2) next.name = 'Please tell us your name.'
@@ -107,10 +109,32 @@ export function ContactForm() {
     }
 
     setStatus('sending')
-    // Replace with a server action / API route posting to your CRM.
-    await new Promise((resolve) => setTimeout(resolve, 900))
-    setStatus('sent')
-    ref.current?.reset()
+    try {
+      await submitToWeb3Forms({
+        subject: `New project enquiry from ${name} — Elite Decore`,
+        from_name: 'Elite Decore Website',
+        name,
+        email,
+        phone,
+        location,
+        project_type: type,
+        budget,
+        message,
+        botcheck: String(data.get('botcheck') ?? ''),
+      })
+      setStatus('sent')
+      ref.current?.reset()
+      setType(PROJECT_TYPES[0])
+      setBudget(BUDGETS[1])
+    } catch (err) {
+      setStatus('error')
+      setErrors({
+        message:
+          err instanceof Web3FormsError
+            ? err.message
+            : 'Something went wrong sending this — please try WhatsApp or email us directly.',
+      })
+    }
   }
 
   if (status === 'sent') {
@@ -136,6 +160,16 @@ export function ContactForm() {
 
   return (
     <form ref={ref} onSubmit={onSubmit} noValidate className="flex flex-col gap-8">
+      {/* Web3Forms honeypot — real visitors never see or fill this. */}
+      <input
+        type="checkbox"
+        name="botcheck"
+        tabIndex={-1}
+        autoComplete="off"
+        className="hidden"
+        aria-hidden="true"
+      />
+
       <div className="grid gap-8 sm:grid-cols-2">
         <div data-field>
           <Field label="Your name" htmlFor="name" error={errors.name}>
@@ -188,7 +222,7 @@ export function ContactForm() {
               id="location"
               name="location"
               type="text"
-              placeholder="Worli, Mumbai"
+              placeholder="Whitefield, Bangalore"
               className={inputClass}
             />
           </Field>

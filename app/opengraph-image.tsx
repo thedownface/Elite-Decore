@@ -35,11 +35,20 @@ export default function OpengraphImage() {
               height: 56,
               borderRadius: 14,
               border: '1px solid rgba(201,162,39,0.45)',
-              color: '#C9A227',
-              fontSize: 26,
             }}
           >
-            ED
+            <svg width="36" height="36" viewBox="0 0 64 64" fill="none">
+              <path
+                d="M10 8v50M10 8h20M10 33h8M10 58h20M30 8c18 0 27 11 27 25s-9 25-27 25"
+                stroke="#F4F3EF"
+                strokeWidth="4.4"
+              />
+              <path d="M26 46l10-12 10 12" stroke="#F4F3EF" strokeWidth="4" />
+              <rect x="31.4" y="47.5" width="4" height="4" fill="#C9A227" />
+              <rect x="36.6" y="47.5" width="4" height="4" fill="#C9A227" />
+              <rect x="31.4" y="52.7" width="4" height="4" fill="#C9A227" />
+              <rect x="36.6" y="52.7" width="4" height="4" fill="#C9A227" />
+            </svg>
           </div>
           <div style={{ display: 'flex', flexDirection: 'column' }}>
             <span style={{ fontSize: 30, letterSpacing: '-0.02em' }}>Elite</span>
@@ -51,7 +60,7 @@ export default function OpengraphImage() {
                 fontFamily: 'Helvetica, sans-serif',
               }}
             >
-              DECOFE
+              DECORE
             </span>
           </div>
         </div>
@@ -67,9 +76,9 @@ export default function OpengraphImage() {
               maxWidth: 900,
             }}
           >
-            <span>Designing Spaces That</span>
+            <span>Creative Meets</span>
             <span style={{ color: '#DCC377', fontStyle: 'italic', marginLeft: 20 }}>
-              Define Luxury
+              Living
             </span>
           </div>
           <div style={{ width: 220, height: 2, background: '#C9A227' }} />
@@ -85,8 +94,8 @@ export default function OpengraphImage() {
             fontFamily: 'Helvetica, sans-serif',
           }}
         >
-          <span>INTERIOR ARCHITECTURE</span>
-          <span>MUMBAI · EST. {SITE.founded}</span>
+          <span>INTERIOR DESIGN</span>
+          <span>BENGALURU · EST. {SITE.founded}</span>
         </div>
       </div>
     ),

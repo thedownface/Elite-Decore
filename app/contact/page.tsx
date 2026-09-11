@@ -10,16 +10,21 @@ import { SITE } from '@/lib/data/site'
 export const metadata: Metadata = createMetadata({
   title: 'Contact',
   description:
-    'Book a consultation with Elite Decofe. Studio in Bandra West, Mumbai — projects across Mumbai, Pune, Bengaluru, Hyderabad, Goa and New Delhi.',
+    'Book a consultation with Elite Decore. Studio on Kodigehalli Road, Bangalore — projects across Bangalore and Karnataka.',
   path: '/contact',
-  keywords: ['interior design consultation', 'contact interior designer Mumbai'],
+  keywords: ['interior design consultation', 'contact interior designer Bangalore'],
 })
 
 const CONTACT_POINTS = [
   { label: 'New projects', value: SITE.email, href: `mailto:${SITE.email}` },
   { label: 'Studio line', value: SITE.phone, href: `tel:${SITE.phoneHref}` },
-  { label: 'Careers', value: 'careers@elitedecofe.com', href: 'mailto:careers@elitedecofe.com' },
-  { label: 'Press', value: 'press@elitedecofe.com', href: 'mailto:press@elitedecofe.com' },
+  {
+    label: 'WhatsApp',
+    value: SITE.phone,
+    href: `https://wa.me/${SITE.whatsappHref}?text=${encodeURIComponent(
+      "Hi Elite Decore, I'd like to talk about an interior project.",
+    )}`,
+  },
 ]
 
 export default function ContactPage() {
@@ -68,7 +73,7 @@ export default function ContactPage() {
                   {SITE.hours}
                 </p>
                 <a
-                  href="https://maps.google.com/?q=Linking+Road+Bandra+West+Mumbai"
+                  href="https://maps.google.com/?q=Muninanjappa+Layout+Kodigehalli+Road+Bangalore+560048"
                   target="_blank"
                   rel="noreferrer noopener"
                   data-cursor="link"
@@ -92,6 +97,8 @@ export default function ContactPage() {
                     <dd>
                       <a
                         href={point.href}
+                        target={point.href.startsWith('https') ? '_blank' : undefined}
+                        rel={point.href.startsWith('https') ? 'noreferrer noopener' : undefined}
                         data-cursor="link"
                         className="link-underline text-sm text-ink/80"
                       >
@@ -128,7 +135,7 @@ export default function ContactPage() {
                 as="p"
                 className="border-t border-ink/10 pt-8 font-display text-fluid-lg font-semibold leading-snug text-ink/75"
               >
-                We take on roughly twenty projects a year. If we are not the right studio for yours, we will say so in the first conversation.
+                We keep our intake deliberately small. If we are not the right studio for yours, we will say so in the first conversation.
               </RevealText>
             </FadeIn>
           </aside>

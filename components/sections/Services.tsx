@@ -99,7 +99,7 @@ export function Services() {
             className="lg:max-w-3xl"
           />
           <p className="max-w-sm text-sm font-normal leading-relaxed text-ink/70 lg:pb-3">
-            Whether we are detailing a single kitchen or delivering a forty-two key hotel,
+            Whether we are detailing a single wardrobe or delivering a full home turnkey,
             the drawings are held to the same tolerance.
           </p>
         </div>

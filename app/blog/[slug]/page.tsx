@@ -95,7 +95,7 @@ export default async function PostPage({ params }: Params) {
 
           <FadeIn delay={0.2} className="mx-auto mt-16 max-w-2xl border-t border-ink/10 pt-8">
             <p className="text-[0.64rem] uppercase tracking-luxe text-ink/60">
-              Written by the Elite Decofe studio ·{' '}
+              Written by the Elite Decore studio ·{' '}
               <time dateTime={post.date}>{formatDate(post.date)}</time>
             </p>
           </FadeIn>

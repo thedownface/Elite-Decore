@@ -66,19 +66,6 @@ export function Testimonials() {
           ))}
         </Marquee>
       </FadeIn>
-
-      <FadeIn delay={0.2} className="container-luxe mt-16">
-        <div className="flex flex-wrap items-center justify-center gap-x-14 gap-y-6 border-t border-ink/10 pt-10 text-[0.64rem] uppercase tracking-luxe text-ink/60">
-          {[
-            'Featured in Architectural Digest India',
-            'Elle Decor Design Award 2024',
-            'IIID Excellence, Residential',
-            'Good Homes Studio of the Year',
-          ].map((item) => (
-            <span key={item}>{item}</span>
-          ))}
-        </div>
-      </FadeIn>
     </section>
   )
 }

@@ -250,7 +250,7 @@ export function PortfolioScroll() {
                       <dd>{project.location}</dd>
                     </div>
                     <div className="flex gap-2">
-                      <dt className="text-paper/60">Area</dt>
+                      <dt className="text-paper/60">Scope</dt>
                       <dd>{project.area}</dd>
                     </div>
                     <div className="flex gap-2">
@@ -273,7 +273,7 @@ export function PortfolioScroll() {
           >
             <div className="flex flex-col gap-7">
               <p className="display-poster text-fluid-2xl text-ink">
-                Two hundred and fifty more, delivered quietly.
+                Every project we've shipped, right here.
               </p>
               <MagneticButton className="w-fit">
                 <Button href="/portfolio" variant="primary" size="lg">

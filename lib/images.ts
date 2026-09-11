@@ -1,28 +1,45 @@
 /**
- * Central image registry. Every asset is served through the Next Image pipeline
- * (AVIF/WebP, responsive srcset) — see `next.config.mjs` remotePatterns.
+ * Central image registry. Every photo is the studio's own site photography,
+ * served locally from `public/images` through the Next Image pipeline
+ * (AVIF/WebP, responsive srcset) — no remote host, no stock imagery.
  */
-const BASE = 'https://images.unsplash.com/photo-'
 
-export const img = (id: string, w = 1920, q = 72) =>
-  `${BASE}${id}?auto=format&fit=crop&w=${w}&q=${q}`
+const p = (path: string) => `/images/${path}`
+
+/** Every real, usable photo from a completed Elite Decore site — used to
+ *  illustrate sections (About, Services) that aren't a specific project. */
+export const GALLERY = {
+  hero: p('hero.jpg'),
+  jaiFortuneKitchen: p('portfolio/jai-fortune-apartments/01-kitchen.jpg'),
+  jaiFortuneKitchenDetail: p('portfolio/jai-fortune-apartments/02-kitchen-detail.jpg'),
+  jaiFortuneTvUnit: p('portfolio/jai-fortune-apartments/03-tv-unit.jpg'),
+  alpineFiesta1: p('portfolio/alpine-fiesta/01-wardrobe.jpg'),
+  alpineFiesta2: p('portfolio/alpine-fiesta/02-wardrobe.jpg'),
+  alpineFiesta3: p('portfolio/alpine-fiesta/03-wardrobe.jpg'),
+  alpineFiesta4: p('portfolio/alpine-fiesta/04-wardrobe.jpg'),
+  alpineFiesta5: p('portfolio/alpine-fiesta/05-wardrobe.jpg'),
+  balajiRosewoods1: p('portfolio/balaji-rosewoods/01-wardrobe.jpg'),
+  balajiRosewoods2: p('portfolio/balaji-rosewoods/02-wardrobe.jpg'),
+  balajiRosewoods3: p('portfolio/balaji-rosewoods/03-bedroom.jpg'),
+  karle1: p('portfolio/karle-apartments/01-wardrobe.jpg'),
+  karle2: p('portfolio/karle-apartments/02-wardrobe.jpg'),
+  karle3: p('portfolio/karle-apartments/03-bedroom.jpg'),
+  prestige1: p('portfolio/prestige-shantiniketan/01-bedroom.jpg'),
+  prestige2: p('portfolio/prestige-shantiniketan/02-bedroom.jpg'),
+  prestige3: p('portfolio/prestige-shantiniketan/03-bedroom.jpg'),
+  prestigeKitchen: p('portfolio/prestige-shantiniketan/04-kitchen.jpg'),
+} as const
 
 export const IMG = {
-  heroLiving: img('1618221195710-dd6b41faaea6', 2400, 78),
-  heroAlt: img('1616486338812-3dadae4b4ace', 2000),
-  aboutPortrait: img('1600607687939-ce8a6c25118c', 1400),
-  aboutDetail: img('1600585154340-be6161a56a0c', 1400),
-  aboutStudio: img('1524758631624-e2822e304c36', 1600),
+  heroLiving: GALLERY.hero,
+  aboutPortrait: GALLERY.prestige2,
+  aboutDetail: GALLERY.jaiFortuneKitchenDetail,
+  aboutStudio: GALLERY.balajiRosewoods3,
 
-  serviceResidential: img('1618221195710-dd6b41faaea6', 1400),
-  serviceVilla: img('1600210492486-724fe5c67fb0', 1400),
-  serviceKitchen: img('1631679706909-1844bbd07221', 1400),
-  serviceOffice: img('1497366811353-6870744d04b2', 1400),
-  serviceHospitality: img('1445019980597-93fa8acb246c', 1400),
-  serviceTurnkey: img('1600566753086-00f18fb6b3ea', 1400),
-
-  beforeState: img('1493809842364-78817add7ffb', 1800),
-  afterState: img('1600607687920-4e2a09cf159d', 1800),
-
-  ctaGrid: img('1533090161767-e6ffed986c88', 1800),
+  serviceResidential: GALLERY.prestige1,
+  serviceVilla: GALLERY.karle3,
+  serviceKitchen: GALLERY.jaiFortuneKitchen,
+  serviceOffice: GALLERY.jaiFortuneTvUnit,
+  serviceHospitality: GALLERY.prestige3,
+  serviceTurnkey: GALLERY.balajiRosewoods2,
 } as const

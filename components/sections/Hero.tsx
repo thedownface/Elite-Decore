@@ -206,7 +206,7 @@ export function Hero() {
             <div className="relative aspect-[16/10]">
               <Image
                 src={IMG.heroLiving}
-                alt="A sunlit luxury living room with travertine floors, low linen seating and brass detailing"
+                alt="A bedroom with a warm wood-panelled false ceiling, backlit alcove and tufted headboard"
                 fill
                 priority
                 fetchPriority="high"
@@ -244,7 +244,7 @@ export function Hero() {
 
         {/* Ticker strip */}
         <div className="flex flex-wrap items-center gap-x-10 gap-y-2 border-t border-ink/10 py-5">
-          {['250+ Projects', '12 Years', '40+ Designers', 'Mumbai · Pune · Bengaluru · Goa'].map(
+          {['20+ Projects', '6 Years', 'In-House Team', 'Bangalore · Karnataka'].map(
             (meta) => (
               <span
                 key={meta}

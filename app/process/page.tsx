@@ -1,7 +1,6 @@
 import type { Metadata } from 'next'
 import { PageHero } from '@/components/layout/PageHero'
 import { Process } from '@/components/sections/Process'
-import { BeforeAfter } from '@/components/sections/BeforeAfter'
 import { CallToAction } from '@/components/sections/CallToAction'
 import { SectionHeading } from '@/components/ui/SectionHeading'
 import { FadeIn } from '@/components/ui/FadeIn'
@@ -21,9 +20,9 @@ export const metadata: Metadata = createMetadata({
 const howToJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'HowTo',
-  name: 'The Elite Decofe interior design process',
+  name: 'The Elite Decore interior design process',
   description:
-    'How Elite Decofe takes an interior project from first conversation to styled handover.',
+    'How Elite Decore takes an interior project from first conversation to styled handover.',
   totalTime: 'P7M',
   step: PROCESS_STEPS.map((step, i) => ({
     '@type': 'HowToStep',
@@ -109,7 +108,6 @@ export default function ProcessPage() {
         </div>
       </section>
 
-      <BeforeAfter />
       <CallToAction />
     </>
   )

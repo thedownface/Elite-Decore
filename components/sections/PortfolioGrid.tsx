@@ -133,7 +133,7 @@ export function PortfolioGrid() {
                     <dd>{project.location}</dd>
                   </div>
                   <div className="flex gap-2">
-                    <dt className="sr-only">Area</dt>
+                    <dt className="sr-only">Scope</dt>
                     <dd>{project.area}</dd>
                   </div>
                   <div className="flex gap-2">

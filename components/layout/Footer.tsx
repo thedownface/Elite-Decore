@@ -4,24 +4,40 @@ import Link from 'next/link'
 import { useState } from 'react'
 import { NAV_LINKS, SITE } from '@/lib/data/site'
 import { SERVICES } from '@/lib/data/services'
-import { Wordmark } from '@/components/ui/Logo'
+import { Monogram, Wordmark } from '@/components/ui/Logo'
 import { RevealText } from '@/components/ui/RevealText'
 import { MagneticButton } from '@/components/ui/MagneticButton'
 import { Button } from '@/components/ui/Button'
+import { submitToWeb3Forms } from '@/lib/forms'
 
 function Newsletter() {
   const [email, setEmail] = useState('')
-  const [state, setState] = useState<'idle' | 'done' | 'error'>('idle')
+  const [state, setState] = useState<'idle' | 'sending' | 'done' | 'invalid' | 'error'>('idle')
 
-  const onSubmit = (e: React.FormEvent) => {
+  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     if (!/^[^@\s]+@[^@\s]+\.[^@\s]{2,}$/.test(email)) {
-      setState('error')
+      setState('invalid')
       return
     }
-    // Wire to your ESP (Klaviyo / Mailchimp / Resend) here.
-    setState('done')
-    setEmail('')
+
+    const botcheck = String(new FormData(e.currentTarget).get('botcheck') ?? '')
+
+    setState('sending')
+    try {
+      await submitToWeb3Forms({
+        subject: 'New newsletter subscriber — Elite Decore',
+        from_name: 'Elite Decore Website',
+        form: 'Newsletter — The Quarterly Folio',
+        email,
+        message: `${email} subscribed to The Quarterly Folio.`,
+        botcheck,
+      })
+      setState('done')
+      setEmail('')
+    } catch {
+      setState('error')
+    }
   }
 
   return (
@@ -33,9 +49,13 @@ function Newsletter() {
         Four letters a year on material, craft and the projects we are proudest of.
       </p>
 
+      {/* Web3Forms honeypot — real visitors never see or fill this. */}
+      <input type="checkbox" name="botcheck" tabIndex={-1} autoComplete="off" className="hidden" aria-hidden="true" />
+
       <div className="mt-2 flex items-center gap-2 border-b border-ink/15 pb-2 transition-colors duration-500 focus-within:border-gold-400">
         <input
           id="footer-email"
+          name="email"
           type="email"
           required
           value={email}
@@ -50,9 +70,10 @@ function Newsletter() {
         <button
           type="submit"
           data-cursor="link"
-          className="shrink-0 font-sans text-[0.62rem] uppercase tracking-luxe text-gold-700 transition-colors duration-500 hover:text-gold-800"
+          disabled={state === 'sending'}
+          className="shrink-0 font-sans text-[0.62rem] uppercase tracking-luxe text-gold-700 transition-colors duration-500 hover:text-gold-800 disabled:opacity-50"
         >
-          Subscribe
+          {state === 'sending' ? 'Sending…' : 'Subscribe'}
         </button>
       </div>
 
@@ -62,8 +83,9 @@ function Newsletter() {
         aria-live="polite"
         className="min-h-[1.1rem] text-xs text-ink/70"
       >
-        {state === 'done' && 'Thank you — please confirm via the email we just sent.'}
-        {state === 'error' && 'Please enter a valid email address.'}
+        {state === 'done' && "Thank you — you're on the list."}
+        {state === 'invalid' && 'Please enter a valid email address.'}
+        {state === 'error' && 'Something went wrong — please try again or email us directly.'}
       </p>
     </form>
   )
@@ -82,7 +104,12 @@ export function Footer() {
       <div className="container-luxe relative py-20 lg:py-28">
         <div className="grid gap-14 lg:grid-cols-12 lg:gap-10">
           <div className="flex flex-col gap-8 lg:col-span-5">
-            <Link href="/" className="w-fit text-ink" aria-label={`${SITE.name} — home`}>
+            <Link
+              href="/"
+              className="flex w-fit items-center gap-3 text-ink"
+              aria-label={`${SITE.name} — home`}
+            >
+              <Monogram className="h-10 w-10 shrink-0" />
               <Wordmark className="text-[19px]" />
             </Link>
 
@@ -101,7 +128,7 @@ export function Footer() {
           </div>
 
           <nav aria-label="Footer" className="lg:col-span-2">
-            <h2 className="eyebrow mb-6">Studio</h2>
+            <h2 className="eyebrow mb-6">Sitemap</h2>
             <ul className="flex flex-col gap-3">
               {NAV_LINKS.map((l) => (
                 <li key={l.href}>
@@ -134,7 +161,7 @@ export function Footer() {
 
           <div className="flex flex-col gap-10 lg:col-span-3">
             <div className="flex flex-col gap-3">
-              <h2 className="eyebrow">Studio</h2>
+              <h2 className="eyebrow">Visit</h2>
               <address className="text-sm font-normal not-italic leading-relaxed text-ink/70">
                 {SITE.address.street}
                 <br />
@@ -155,6 +182,17 @@ export function Footer() {
                 data-cursor="link"
               >
                 {SITE.phone}
+              </a>
+              <a
+                href={`https://wa.me/${SITE.whatsappHref}?text=${encodeURIComponent(
+                  "Hi Elite Decore, I'd like to talk about an interior project.",
+                )}`}
+                target="_blank"
+                rel="noreferrer noopener"
+                className="link-underline w-fit text-sm text-ink/85"
+                data-cursor="link"
+              >
+                WhatsApp us
               </a>
               <span className="text-xs text-ink/65">{SITE.hours}</span>
             </div>
@@ -187,7 +225,7 @@ export function Footer() {
 
       <div aria-hidden className="pointer-events-none select-none overflow-hidden">
         <p className="-mb-[0.22em] whitespace-nowrap text-center font-display text-[19vw] font-semibold leading-none tracking-tightest text-white/[0.035]">
-          ELITE DECOFE
+          ELITE DECORE
         </p>
       </div>
     </footer>

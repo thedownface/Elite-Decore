@@ -15,9 +15,9 @@ import { SITE } from '@/lib/data/site'
 export const metadata: Metadata = createMetadata({
   title: 'About the Studio',
   description:
-    'Elite Decofe is a forty-person interior architecture studio in Bandra, Mumbai. Twelve years, 250 projects, and one conviction: luxury is the absence of anything unconsidered.',
+    'Elite Decore is a small in-house interior design studio in Bangalore. Six years, twenty homes, and one conviction: luxury is the absence of anything unconsidered.',
   path: '/about',
-  keywords: ['interior design studio Mumbai', 'about Elite Decofe', 'luxury design practice'],
+  keywords: ['interior design studio Bangalore', 'about Elite Decore', 'luxury design practice'],
 })
 
 const PRINCIPLES = [
@@ -38,16 +38,16 @@ const PRINCIPLES = [
   },
   {
     index: '04',
-    title: 'Twenty projects a year',
-    body: 'We cap our intake deliberately. The principal visits every site every week, and there are only so many weeks in a year. Growth beyond that would cost the thing clients hire us for.',
+    title: 'A deliberate pace',
+    body: 'We cap our intake deliberately. The principal visits every site personally, on a regular schedule, and there are only so many hours in a week. Growth beyond that would cost the thing clients hire us for.',
   },
 ]
 
 const TEAM = [
-  { name: 'Design & Detailing', count: '18', note: 'Architects, interior designers and drafters' },
-  { name: 'Project Management', count: '11', note: 'On site, three visits a week, every week' },
-  { name: 'Procurement & Craft', count: '9', note: 'Sourcing, workshop liaison and QC' },
-  { name: 'Studio & Client Care', count: '4', note: 'Contracts, scheduling and aftercare' },
+  { name: 'Design & Detailing', count: '3', note: 'Interior designers and drafters' },
+  { name: 'Site Execution', count: '3', note: 'Carpentry, electrical and on-site supervision' },
+  { name: 'Procurement', count: '1', note: 'Vendor sourcing, workshop liaison and QC' },
+  { name: 'Client Care', count: '1', note: 'Scheduling, contracts and aftercare' },
 ]
 
 export default function AboutPage() {
@@ -61,20 +61,20 @@ export default function AboutPage() {
       />
 
       <PageHero
-        eyebrow={`Est. ${SITE.founded} · Bandra West`}
+        eyebrow={`Est. ${SITE.founded} · Bangalore`}
         title="A studio built around a single idea."
-        description="Elite Decofe designs interiors for people who intend to live in them for twenty years. That intention changes every decision we make — which materials we specify, which projects we accept, and how many of them we take on at once."
+        description="Elite Decore designs interiors for people who intend to live in them for twenty years. That intention changes every decision we make — which materials we specify, which projects we accept, and how many of them we take on at once."
         image={IMG.aboutStudio}
-        imageAlt="The Elite Decofe studio in Bandra, with drawing tables and material samples"
+        imageAlt="A bedroom with a cherry-blossom mural feature wall, delivered by Elite Decore"
         breadcrumb={[
           { label: 'Home', href: '/' },
           { label: 'About', href: '/about' },
         ]}
         meta={[
           { label: 'Founded', value: SITE.founded },
-          { label: 'Team', value: '42 people' },
-          { label: 'Projects', value: '250+' },
-          { label: 'Cities', value: 'Six' },
+          { label: 'Team', value: '8+ people' },
+          { label: 'Projects', value: '20+' },
+          { label: 'Based in', value: 'Bengaluru' },
         ]}
       />
 
@@ -119,7 +119,7 @@ export default function AboutPage() {
           <div className="lg:col-span-5">
             <SectionHeading
               eyebrow="The Team"
-              title="Forty-two people, one roof."
+              title="A small team, one roof."
               description="We have never used a freelance drafting pool or a third-party contractor. Everyone who touches your project is on our payroll and in our studio."
               as="h2"
             />
@@ -131,7 +131,7 @@ export default function AboutPage() {
           <div className="lg:col-span-7">
             <RevealImage
               src={IMG.aboutStudio}
-              alt="Designers reviewing drawings and material boards at the studio"
+              alt="Bedroom feature wall with cherry-blossom mural and cove-lit ceiling, delivered by Elite Decore"
               className="aspect-[16/10] w-full rounded-arch"
               parallax={7}
               sizes="(max-width: 1024px) 100vw, 55vw"

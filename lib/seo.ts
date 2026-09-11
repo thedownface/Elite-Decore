@@ -13,13 +13,13 @@ type SeoInput = {
 
 const DEFAULT_KEYWORDS = [
   'luxury interior design',
-  'interior designers Mumbai',
+  'interior designers Bangalore',
   'bespoke interiors',
   'villa interior design',
   'turnkey interior projects',
   'modular kitchen design',
   'hospitality interior design',
-  'Elite Decofe',
+  'Elite Decore',
 ]
 
 export function createMetadata({
@@ -57,7 +57,7 @@ export function createMetadata({
       title,
       description,
       ...(image ? { images: [image] } : {}),
-      creator: '@elitedecofe',
+      creator: '@elitedecore',
     },
   }
 }
@@ -71,13 +71,13 @@ export function organizationJsonLd() {
     name: SITE.name,
     legalName: SITE.legalName,
     url: SITE.url,
-    logo: `${SITE.url}/icon.svg`,
-    image: `${SITE.url}/og.png`,
+    logo: `${SITE.url}/icon`,
+    image: `${SITE.url}/opengraph-image`,
     description: SITE.description,
     email: SITE.email,
     telephone: SITE.phone,
     foundingDate: SITE.founded,
-    priceRange: '$$$$',
+    priceRange: '$$$',
     address: {
       '@type': 'PostalAddress',
       streetAddress: `${SITE.address.street}, ${SITE.address.district}`,
@@ -86,15 +86,8 @@ export function organizationJsonLd() {
       postalCode: SITE.address.postalCode,
       addressCountry: SITE.address.country,
     },
-    geo: { '@type': 'GeoCoordinates', latitude: 19.0596, longitude: 72.8295 },
-    areaServed: ['Mumbai', 'Pune', 'Bengaluru', 'Hyderabad', 'Goa', 'New Delhi'],
+    areaServed: ['Bangalore', 'Karnataka'],
     sameAs: SITE.socials.map((s) => s.href),
-    aggregateRating: {
-      '@type': 'AggregateRating',
-      ratingValue: '4.9',
-      reviewCount: '187',
-      bestRating: '5',
-    },
   }
 }
 
