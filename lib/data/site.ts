@@ -1,6 +1,6 @@
 import type { NavLink } from '@/types'
 
-const FALLBACK_URL = 'https://elitedecore.in'
+const FALLBACK_URL = 'https://www.elitedecore.co.in'
 
 /**
  * Resolves the canonical origin for metadata, JSON-LD, sitemap and robots.
@@ -12,11 +12,20 @@ const FALLBACK_URL = 'https://elitedecore.in'
  * URL-parsed before it is trusted.
  */
 function resolveSiteUrl(): string {
+  /**
+   * VERCEL_URL is the *per-deployment* host (elite-decore-<hash>.vercel.app),
+   * never the production alias, and it is behind deployment protection. Trusting
+   * it in production pointed every canonical, og:url, robots Host and sitemap
+   * <loc> at a login-walled URL, which told Google the real domain was not the
+   * canonical one. So it is only a candidate off production; production uses the
+   * explicit NEXT_PUBLIC_SITE_URL, or the real domain below.
+   */
+  const isProduction = process.env.VERCEL_ENV === 'production'
+
   const candidates = [
     process.env.NEXT_PUBLIC_SITE_URL,
-    // Set automatically on Vercel, so preview deploys get correct absolute URLs.
-    process.env.NEXT_PUBLIC_VERCEL_URL,
-    process.env.VERCEL_URL,
+    // Preview and development deploys still want their own absolute URLs.
+    ...(isProduction ? [] : [process.env.NEXT_PUBLIC_VERCEL_URL, process.env.VERCEL_URL]),
   ]
 
   for (const raw of candidates) {
