@@ -17,7 +17,7 @@ const PROJECT_TYPES = [
   'Turnkey Project',
 ]
 
-const BUDGETS = ['₹15 – 40 L', '₹40 L – 1 Cr', '₹1 – 3 Cr', '₹3 Cr +', 'Not yet defined']
+const BUDGETS = ['₹2 – 15 L', '₹15 – 40 L', '₹40 L – 1 Cr', '₹1 – 3 Cr', '₹3 Cr +', 'Not yet defined']
 
 type Errors = Partial<Record<'name' | 'email' | 'phone' | 'message', string>>
 
@@ -63,7 +63,7 @@ export function ContactForm() {
   const [errors, setErrors] = useState<Errors>({})
   const [status, setStatus] = useState<'idle' | 'sending' | 'sent' | 'error'>('idle')
   const [type, setType] = useState(PROJECT_TYPES[0])
-  const [budget, setBudget] = useState(BUDGETS[1])
+  const [budget, setBudget] = useState(BUDGETS[2])
   const reduced = useReducedMotion()
 
   useGSAP(
@@ -125,7 +125,7 @@ export function ContactForm() {
       setStatus('sent')
       ref.current?.reset()
       setType(PROJECT_TYPES[0])
-      setBudget(BUDGETS[1])
+      setBudget(BUDGETS[2])
     } catch (err) {
       setStatus('error')
       setErrors({
