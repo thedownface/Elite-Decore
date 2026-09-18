@@ -6,6 +6,7 @@ import { RevealText } from '@/components/ui/RevealText'
 import { JsonLd } from '@/components/seo/JsonLd'
 import { createMetadata, breadcrumbJsonLd } from '@/lib/seo'
 import { SITE } from '@/lib/data/site'
+import { whatsappUrl, WHATSAPP_GREETING } from '@/lib/whatsapp'
 
 export const metadata: Metadata = createMetadata({
   title: 'Contact',
@@ -20,10 +21,8 @@ const CONTACT_POINTS = [
   { label: 'Studio line', value: SITE.phone, href: `tel:${SITE.phoneHref}` },
   {
     label: 'WhatsApp',
-    value: SITE.phone,
-    href: `https://wa.me/${SITE.whatsappHref}?text=${encodeURIComponent(
-      "Hi Elite Decore, I'd like to talk about an interior project.",
-    )}`,
+    value: SITE.whatsapp,
+    href: whatsappUrl(WHATSAPP_GREETING),
   },
 ]
 

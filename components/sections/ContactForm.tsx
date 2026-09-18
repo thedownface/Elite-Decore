@@ -7,6 +7,8 @@ import { MagneticButton } from '@/components/ui/MagneticButton'
 import { cn } from '@/lib/utils'
 import { useReducedMotion } from '@/hooks/useReducedMotion'
 import { submitToWeb3Forms, Web3FormsError } from '@/lib/forms'
+import { whatsappUrl, enquiryMessage } from '@/lib/whatsapp'
+import { WhatsAppIcon } from '@/components/ui/WhatsAppIcon'
 
 const PROJECT_TYPES = [
   'Residential Interiors',
@@ -64,6 +66,9 @@ export function ContactForm() {
   const [status, setStatus] = useState<'idle' | 'sending' | 'sent' | 'error'>('idle')
   const [type, setType] = useState(PROJECT_TYPES[0])
   const [budget, setBudget] = useState(BUDGETS[2])
+  /* Set only when the WhatsApp tab was blocked, so the success panel can offer
+     the chat as a link the visitor taps themselves. */
+  const [waFallback, setWaFallback] = useState<string | null>(null)
   const reduced = useReducedMotion()
 
   useGSAP(
@@ -109,6 +114,14 @@ export function ContactForm() {
     }
 
     setStatus('sending')
+
+    /* The WhatsApp hand-off is opened from inside the submit handler's own
+       task, not after the await — Safari and most mobile browsers only allow
+       window.open() while a user gesture is still being processed, and an
+       awaited fetch ends that window. So the tab is claimed synchronously and
+       its location is filled in once the message is composed. */
+    const waTab = window.open('', '_blank')
+
     try {
       await submitToWeb3Forms({
         subject: `New project enquiry from ${name} — Elite Decore`,
@@ -122,11 +135,31 @@ export function ContactForm() {
         message,
         botcheck: String(data.get('botcheck') ?? ''),
       })
+
+      const url = whatsappUrl(
+        enquiryMessage({
+          name,
+          email,
+          phone,
+          location,
+          projectType: type,
+          budget,
+          message,
+        }),
+      )
+
+      /* A blocked popup leaves waTab null; navigating the current tab would
+         lose the "sent" confirmation, so fall back to a link the visitor can
+         tap from the success panel instead. */
+      if (waTab) waTab.location.href = url
+      else setWaFallback(url)
+
       setStatus('sent')
       ref.current?.reset()
       setType(PROJECT_TYPES[0])
       setBudget(BUDGETS[2])
     } catch (err) {
+      waTab?.close()
       setStatus('error')
       setErrors({
         message:
@@ -148,12 +181,34 @@ export function ContactForm() {
           Thank you — we will respond within one working day.
         </h3>
         <p className="max-w-md text-sm font-normal leading-relaxed text-ink/65">
-          A studio director reads every enquiry personally. If your project is time-sensitive,
-          call us and ask for the design desk.
+          {waFallback
+            ? 'Your enquiry has reached us by email. Open WhatsApp to carry on the conversation there — your details are already written out.'
+            : 'A studio director reads every enquiry personally. WhatsApp should have opened in a new tab with your details ready to send.'}
         </p>
-        <Button onClick={() => setStatus('idle')} variant="outline" size="sm">
-          Send another enquiry
-        </Button>
+        <div className="flex flex-wrap items-center gap-3">
+          {waFallback && (
+            <Button
+              href={waFallback}
+              variant="primary"
+              size="sm"
+              target="_blank"
+              rel="noreferrer noopener"
+            >
+              <WhatsAppIcon />
+              Continue on WhatsApp
+            </Button>
+          )}
+          <Button
+            onClick={() => {
+              setWaFallback(null)
+              setStatus('idle')
+            }}
+            variant="outline"
+            size="sm"
+          >
+            Send another enquiry
+          </Button>
+        </div>
       </div>
     )
   }
@@ -294,12 +349,14 @@ export function ContactForm() {
       <div data-field className="flex flex-wrap items-center gap-6 pt-2">
         <MagneticButton>
           <Button type="submit" variant="primary" size="lg" disabled={status === 'sending'}>
+            <WhatsAppIcon className="h-[1.05em] w-[1.05em]" />
             {status === 'sending' ? 'Sending…' : 'Send Enquiry'}
           </Button>
         </MagneticButton>
 
         <p className="max-w-xs text-xs font-normal leading-relaxed text-ink/65">
-          We reply within one working day. Your details are never shared with vendors.
+          Sends us an email and opens WhatsApp with your details written out, ready for you
+          to send. We reply within one working day, and never share your details with vendors.
         </p>
       </div>
     </form>

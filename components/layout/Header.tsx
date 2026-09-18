@@ -6,6 +6,8 @@ import { usePathname } from 'next/navigation'
 import { gsap } from '@/lib/gsap'
 import { cn } from '@/lib/utils'
 import { NAV_LINKS, SITE } from '@/lib/data/site'
+import { whatsappUrl, bookingMessage } from '@/lib/whatsapp'
+import { WhatsAppIcon } from '@/components/ui/WhatsAppIcon'
 import { AnimatedLink } from '@/components/ui/AnimatedLink'
 import { MagneticButton } from '@/components/ui/MagneticButton'
 import { Button } from '@/components/ui/Button'
@@ -115,7 +117,14 @@ export function Header() {
 
           <div className="flex items-center gap-4">
             <MagneticButton className="hidden sm:block">
-              <Button href="/contact" size="sm" variant="outline">
+              <Button
+                href={whatsappUrl(bookingMessage())}
+                size="sm"
+                variant="outline"
+                target="_blank"
+                rel="noreferrer noopener"
+              >
+                <WhatsAppIcon />
                 Book Consultation
               </Button>
             </MagneticButton>

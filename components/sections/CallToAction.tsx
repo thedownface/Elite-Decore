@@ -3,6 +3,8 @@
 import { useRef } from 'react'
 import { gsap, useGSAP } from '@/lib/gsap'
 import { SITE } from '@/lib/data/site'
+import { whatsappUrl, bookingMessage } from '@/lib/whatsapp'
+import { WhatsAppIcon } from '@/components/ui/WhatsAppIcon'
 import { RevealText } from '@/components/ui/RevealText'
 import { FadeIn } from '@/components/ui/FadeIn'
 import { Button } from '@/components/ui/Button'
@@ -142,7 +144,14 @@ export function CallToAction() {
         <FadeIn delay={0.25}>
           <div className="flex flex-wrap items-center justify-center gap-4">
             <MagneticButton strength={34}>
-              <Button href="/contact" variant="primary" size="lg">
+              <Button
+                href={whatsappUrl(bookingMessage())}
+                variant="primary"
+                size="lg"
+                target="_blank"
+                rel="noreferrer noopener"
+              >
+                <WhatsAppIcon className="h-[1.05em] w-[1.05em]" />
                 Book a Consultation
               </Button>
             </MagneticButton>

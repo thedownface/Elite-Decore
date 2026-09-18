@@ -7,6 +7,8 @@ import { CallToAction } from '@/components/sections/CallToAction'
 import { SectionHeading } from '@/components/ui/SectionHeading'
 import { FadeIn } from '@/components/ui/FadeIn'
 import { Button } from '@/components/ui/Button'
+import { whatsappUrl, bookingMessage } from '@/lib/whatsapp'
+import { WhatsAppIcon } from '@/components/ui/WhatsAppIcon'
 import { MagneticButton } from '@/components/ui/MagneticButton'
 import { JsonLd } from '@/components/seo/JsonLd'
 import { createMetadata, breadcrumbJsonLd, serviceJsonLd, faqJsonLd } from '@/lib/seo'
@@ -142,10 +144,13 @@ export default function ServicesPage() {
 
                   <MagneticButton className="w-fit">
                     <Button
-                      href="/contact"
+                      href={whatsappUrl(bookingMessage(tier.title))}
                       variant={tier.featured ? 'primary' : 'outline'}
                       size="sm"
+                      target="_blank"
+                      rel="noreferrer noopener"
                     >
+                      <WhatsAppIcon />
                       Enquire
                     </Button>
                   </MagneticButton>

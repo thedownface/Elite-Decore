@@ -7,6 +7,8 @@ import { RevealImage } from '@/components/ui/RevealImage'
 import { RevealText } from '@/components/ui/RevealText'
 import { FadeIn } from '@/components/ui/FadeIn'
 import { Button } from '@/components/ui/Button'
+import { whatsappUrl, bookingMessage } from '@/lib/whatsapp'
+import { WhatsAppIcon } from '@/components/ui/WhatsAppIcon'
 import { MagneticButton } from '@/components/ui/MagneticButton'
 import { JsonLd } from '@/components/seo/JsonLd'
 import { createMetadata, breadcrumbJsonLd, projectJsonLd } from '@/lib/seo'
@@ -109,7 +111,14 @@ export default async function ProjectPage({ params }: Params) {
               </dl>
 
               <MagneticButton className="w-fit">
-                <Button href="/contact" variant="outline" size="sm">
+                <Button
+                  href={whatsappUrl(bookingMessage(`a project like ${project.title}`))}
+                  variant="outline"
+                  size="sm"
+                  target="_blank"
+                  rel="noreferrer noopener"
+                >
+                  <WhatsAppIcon />
                   Discuss a similar project
                 </Button>
               </MagneticButton>

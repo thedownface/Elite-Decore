@@ -3,6 +3,8 @@
 import Link from 'next/link'
 import { useState } from 'react'
 import { NAV_LINKS, SITE } from '@/lib/data/site'
+import { whatsappUrl, bookingMessage, WHATSAPP_GREETING } from '@/lib/whatsapp'
+import { WhatsAppIcon } from '@/components/ui/WhatsAppIcon'
 import { SERVICES } from '@/lib/data/services'
 import { Monogram, Wordmark } from '@/components/ui/Logo'
 import { RevealText } from '@/components/ui/RevealText'
@@ -121,7 +123,14 @@ export function Footer() {
             </RevealText>
 
             <MagneticButton className="w-fit">
-              <Button href="/contact" variant="primary" size="md">
+              <Button
+                href={whatsappUrl(bookingMessage())}
+                variant="primary"
+                size="md"
+                target="_blank"
+                rel="noreferrer noopener"
+              >
+                <WhatsAppIcon />
                 Start a Project
               </Button>
             </MagneticButton>
@@ -184,9 +193,7 @@ export function Footer() {
                 {SITE.phone}
               </a>
               <a
-                href={`https://wa.me/${SITE.whatsappHref}?text=${encodeURIComponent(
-                  "Hi Elite Decore, I'd like to talk about an interior project.",
-                )}`}
+                href={whatsappUrl(WHATSAPP_GREETING)}
                 target="_blank"
                 rel="noreferrer noopener"
                 className="link-underline w-fit text-sm text-ink/85"

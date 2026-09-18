@@ -8,6 +8,8 @@ import { gsap, useGSAP } from '@/lib/gsap'
 import { IMG } from '@/lib/images'
 import { EASE } from '@/lib/motion'
 import { SITE } from '@/lib/data/site'
+import { whatsappUrl, bookingMessage } from '@/lib/whatsapp'
+import { WhatsAppIcon } from '@/components/ui/WhatsAppIcon'
 import { Button } from '@/components/ui/Button'
 import { MagneticButton } from '@/components/ui/MagneticButton'
 import { useMousePosition } from '@/hooks/useMousePosition'
@@ -234,7 +236,14 @@ export function Hero() {
                 </Button>
               </MagneticButton>
               <MagneticButton>
-                <Button href="/contact" variant="outline" size="md">
+                <Button
+                  href={whatsappUrl(bookingMessage())}
+                  variant="outline"
+                  size="md"
+                  target="_blank"
+                  rel="noreferrer noopener"
+                >
+                  <WhatsAppIcon />
                   Book Consultation
                 </Button>
               </MagneticButton>
