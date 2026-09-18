@@ -209,7 +209,21 @@ export function Footer() {
         </div>
 
         <div className="mt-16 flex flex-col gap-6 border-t border-ink/10 pt-8 md:flex-row md:items-center md:justify-between">
-          <div className="flex flex-wrap gap-x-7 gap-y-2">
+          <div className="flex flex-wrap items-center gap-x-7 gap-y-2">
+            {/* WhatsApp leads the row and is the only one carrying a glyph —
+                it is a way to reach the studio, not a profile to go and read,
+                and the icon is what makes that legible at a glance. */}
+            <a
+              href={whatsappUrl(WHATSAPP_GREETING)}
+              target="_blank"
+              rel="noreferrer noopener"
+              data-cursor="link"
+              aria-label="Chat with Elite Decore on WhatsApp"
+              className="link-underline flex items-center gap-2 text-[0.66rem] uppercase tracking-luxe text-ink/60 transition-colors hover:text-[#25D366]"
+            >
+              <WhatsAppIcon className="h-3.5 w-3.5" />
+              WhatsApp
+            </a>
             {SITE.socials.map((s) => (
               <a
                 key={s.href}
