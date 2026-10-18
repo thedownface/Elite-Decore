@@ -56,11 +56,10 @@ export const SITE = {
   email: 'info@elitedecore.in',
   phone: '+91 97381 25710',
   phoneHref: '+919738125710',
-  /* WhatsApp is a separate line from the studio phone above: enquiries land on
-     91 97400 63730, calls stay on the business-card number. Digits only, with
-     country code and no '+', which is the format wa.me requires. */
-  whatsappHref: '919740063730',
-  whatsapp: '+91 97400 63730',
+  /* WhatsApp runs on the same studio line as calls. Digits only, with country
+     code and no '+', which is the format wa.me requires. */
+  whatsappHref: '919738125710',
+  whatsapp: '+91 97381 25710',
   founded: '2020',
   address: {
     street: '#95, Muninanjappa Layout',
