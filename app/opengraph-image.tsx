@@ -1,5 +1,6 @@
 import { ImageResponse } from 'next/og'
 import { SITE } from '@/lib/data/site'
+import { logoDataUrl } from '@/lib/logo-asset'
 
 export const alt = `${SITE.name} — ${SITE.tagline}`
 export const size = { width: 1200, height: 630 }
@@ -9,7 +10,8 @@ export const contentType = 'image/png'
  * Branded social card, rendered at build time. Kept to system serif/sans so it
  * needs no font fetch and cannot fail the build on a cold network.
  */
-export default function OpengraphImage() {
+export default async function OpengraphImage() {
+  const logo = await logoDataUrl('logo-light')
   return new ImageResponse(
     (
       <div
@@ -25,44 +27,9 @@ export default function OpengraphImage() {
           fontFamily: 'Georgia, serif',
         }}
       >
-        <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
-          <div
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              width: 56,
-              height: 56,
-              borderRadius: 14,
-              border: '1px solid rgba(201,162,39,0.45)',
-            }}
-          >
-            <svg width="36" height="36" viewBox="0 0 64 64" fill="none">
-              <path
-                d="M10 8v50M10 8h20M10 33h8M10 58h20M30 8c18 0 27 11 27 25s-9 25-27 25"
-                stroke="#F4F3EF"
-                strokeWidth="4.4"
-              />
-              <path d="M26 46l10-12 10 12" stroke="#F4F3EF" strokeWidth="4" />
-              <rect x="31.4" y="47.5" width="4" height="4" fill="#C9A227" />
-              <rect x="36.6" y="47.5" width="4" height="4" fill="#C9A227" />
-              <rect x="31.4" y="52.7" width="4" height="4" fill="#C9A227" />
-              <rect x="36.6" y="52.7" width="4" height="4" fill="#C9A227" />
-            </svg>
-          </div>
-          <div style={{ display: 'flex', flexDirection: 'column' }}>
-            <span style={{ fontSize: 30, letterSpacing: '-0.02em' }}>Elite</span>
-            <span
-              style={{
-                fontSize: 14,
-                letterSpacing: '0.3em',
-                color: '#DCC377',
-                fontFamily: 'Helvetica, sans-serif',
-              }}
-            >
-              DECORE
-            </span>
-          </div>
+        <div style={{ display: 'flex' }}>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src={logo} width={276} height={120} alt="" />
         </div>
 
         <div style={{ display: 'flex', flexDirection: 'column', gap: 22 }}>

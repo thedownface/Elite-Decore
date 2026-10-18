@@ -6,7 +6,7 @@ import { NAV_LINKS, SITE } from '@/lib/data/site'
 import { whatsappUrl, bookingMessage, WHATSAPP_GREETING } from '@/lib/whatsapp'
 import { WhatsAppIcon } from '@/components/ui/WhatsAppIcon'
 import { SERVICES } from '@/lib/data/services'
-import { Monogram, Wordmark } from '@/components/ui/Logo'
+import { Logo } from '@/components/ui/Logo'
 import { RevealText } from '@/components/ui/RevealText'
 import { MagneticButton } from '@/components/ui/MagneticButton'
 import { Button } from '@/components/ui/Button'
@@ -108,11 +108,10 @@ export function Footer() {
           <div className="flex flex-col gap-8 lg:col-span-5">
             <Link
               href="/"
-              className="flex w-fit items-center gap-3 text-ink"
+              className="flex w-fit items-center"
               aria-label={`${SITE.name} — home`}
             >
-              <Monogram className="h-10 w-10 shrink-0" />
-              <Wordmark className="text-[19px]" />
+              <Logo className="h-20 md:h-24" />
             </Link>
 
             <RevealText

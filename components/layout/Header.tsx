@@ -11,7 +11,7 @@ import { WhatsAppIcon } from '@/components/ui/WhatsAppIcon'
 import { AnimatedLink } from '@/components/ui/AnimatedLink'
 import { MagneticButton } from '@/components/ui/MagneticButton'
 import { Button } from '@/components/ui/Button'
-import { Monogram, Wordmark } from '@/components/ui/Logo'
+import { Logo } from '@/components/ui/Logo'
 import { useLenis } from '@/hooks/useLenis'
 import { useReducedMotion } from '@/hooks/useReducedMotion'
 import { MenuOverlay } from './MenuOverlay'
@@ -97,10 +97,9 @@ export function Header() {
             href="/"
             data-cursor="link"
             aria-label={`${SITE.name} — home`}
-            className="relative z-10 flex items-center gap-2.5 text-ink transition-colors duration-500 hover:text-gold-700"
+            className="relative z-10 flex items-center transition-opacity duration-500 hover:opacity-80"
           >
-            <Monogram className="h-8 w-8 shrink-0" />
-            <Wordmark className="text-[15px]" />
+            <Logo priority className="h-11 md:h-12" />
           </Link>
 
           <nav aria-label="Primary" className="hidden items-center gap-9 lg:flex">

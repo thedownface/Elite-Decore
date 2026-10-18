@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from 'react'
 import Image from 'next/image'
 import { gsap, useGSAP } from '@/lib/gsap'
-import { Monogram } from '@/components/ui/Logo'
+import { Logo } from '@/components/ui/Logo'
 import { useReducedMotion } from '@/hooks/useReducedMotion'
 import { useLenis } from '@/hooks/useLenis'
 import { pad } from '@/lib/utils'
@@ -11,9 +11,9 @@ import { pad } from '@/lib/utils'
 const SESSION_KEY = 'ed:intro-played'
 
 /**
- * First-visit intro: a dark stage matching the studio's own logo art — the
- * monogram's ambient glow blooms in behind it, its strokes draw themselves,
- * and the window lights up, while a counter climbs to 100. Two dark panels
+ * First-visit intro: a dark stage matching the studio's own logo art — an
+ * ambient glow blooms in behind the logo as it wipes in from the left, while
+ * a counter climbs to 100. Two dark panels
  * then split apart to hand over to the paper-light hero underneath. Plays
  * once per session, and is skipped entirely under reduced-motion.
  */
@@ -60,19 +60,18 @@ export function Preloader() {
       })
 
       tl.to('[data-intro-glow]', { opacity: 1, scale: 1, duration: 2.2, ease: 'expo.out' }, 0)
-        .to('[data-intro-mark] path', {
-          strokeDashoffset: 0,
-          duration: 1.5,
-          stagger: 0.12,
-          ease: 'expo.out',
-        }, 0.1)
-        .to(
-          '[data-intro-mark] rect',
-          { opacity: 1, duration: 0.7, stagger: 0.09, ease: 'power2.out' },
-          0.55,
+        .fromTo(
+          '[data-intro-mark]',
+          { clipPath: 'inset(0% 100% 0% 0%)', autoAlpha: 0, scale: 0.94 },
+          {
+            clipPath: 'inset(0% 0% 0% 0%)',
+            autoAlpha: 1,
+            scale: 1,
+            duration: 1.6,
+            ease: 'expo.out',
+          },
+          0.15,
         )
-        .from('[data-intro-word]', { yPercent: 120, duration: 1.1, ease: 'expo.out' }, 0.5)
-        .from('[data-intro-tagline]', { autoAlpha: 0, y: 10, duration: 0.9, ease: 'expo.out' }, 0.75)
         .to(
           count,
           {
@@ -136,28 +135,9 @@ export function Preloader() {
         data-intro-content
         className="relative flex flex-col items-center gap-8 px-6 text-center"
       >
-        <div
-          data-intro-mark
-          className="text-paper [&_path]:[stroke-dasharray:90] [&_path]:[stroke-dashoffset:90] [&_rect]:opacity-0"
-        >
-          <Monogram className="h-16 w-16" />
+        <div data-intro-mark className="opacity-0">
+          <Logo tone="light" priority className="h-28 md:h-40" />
         </div>
-
-        <div className="overflow-hidden">
-          <span
-            data-intro-word
-            className="block font-display text-2xl font-bold uppercase tracking-[0.02em] text-paper md:text-4xl"
-          >
-            ELITE DECORE
-          </span>
-        </div>
-
-        <span
-          data-intro-tagline
-          className="-mt-4 text-[0.62rem] uppercase tracking-luxe text-gold-400"
-        >
-          Creative Meets Living
-        </span>
 
         <div className="relative h-px w-56 overflow-hidden bg-paper/15 md:w-72">
           <div
